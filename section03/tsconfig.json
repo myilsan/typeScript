@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "outDir": "dist",
+    "strict": true,
+    "moduleDetection": "force",
+
+    //원시타입 null 체크를 false이면 nulll 처리 된다
+    //"strictNullChecks": false
+
+
+    },
+    "ts-node": { // ts-node  현재는 안됨, $tsx src/index.ts 로 하면됩니다.
+        "esm": true
+    },
+    "include": ["src"]
+    
+
+}
