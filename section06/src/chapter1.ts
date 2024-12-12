@@ -19,6 +19,7 @@ class Employee {
 }
 
 class ExecutiveOfficer extends Employee {
+  //상속받도록
   //필드
   officeNUmber: number;
 
