@@ -62,7 +62,7 @@ Waiting for the debugger to disconnect...
 added 20 packages in 4s
 Waiting for the debugger to disconnect...
 
-$ ts-node src/index.ts --> 2023sus 10월 이후 작동안됨 6번으로 대체
+$ ts-node src/index.ts --> 2023년 10월 이후 작동안됨 6번으로 대체
 
 6. tsx 대채(2023년 10이후 로 대체로 설치 후 tsx 로 사용해야 함.)
    $ ts-node src/index.ts$ npm i -g tsx
