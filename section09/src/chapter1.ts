@@ -1,41 +1,46 @@
 /**
- * 조건부 타입
+ * 분산적인 조건부 타입
  */
-
-type A = number extends string ? string : number;
-
-type ObjA = {
-  //슈퍼타입
-  a: number;
-};
-
-type ObjB = {
-  a: number;
-  b: number;
-};
-
-//ObjB  확장하냐 ObjA type 을 ?
-type B = ObjB extends ObjA ? number : string;
-
-/**
- *
- * 제네닉과 조건타입 때 사용이 된다.
- * 제네릭에 string 타입이 오면 number 타입으로 하고  , number 타입이 오면 string 타입으로 변환하기
- */
-
-let varA: StringNumberSwitch<number>;
-let varB: StringNumberSwitch<string>;
 
 type StringNumberSwitch<T> = T extends number ? string : number;
 
-function removeSpaces<T>(text: T): T extends string ? string : undefined;
-function removeSpaces(text: any) {
-  if (typeof text === "string") {
-    return text.replaceAll(" ", "");
-  } else {
-    return undefined;
-  }
-}
+//분산을 방지하기위해서는 []로 사용해서 처리 할수 할수 있다.
+type StringNumberSwitch2<T> = [T] extends [number] ? string : number;
 
-let result = removeSpaces("hi im winterlood");
-result.toUpperCase();
+let a: StringNumberSwitch<number>;
+let b: StringNumberSwitch<string>;
+
+let c: StringNumberSwitch<number | string>;
+//각각 한번씩 분리가 되어 union 된다.
+//StringNumberSwitch<number> |  --> string
+//StringNumberSwitch<string>  --> number;
+//결과 : string | number
+
+let d: StringNumberSwitch<boolean | number | string>;
+
+//분리되어
+//number | string | number
+//결과 : number |string
+
+/** 실용적인 예제 조건부 타입 */
+
+type Exclude<T, U> = T extends U ? never : T;
+
+type A = Exclude<number | string | boolean, string>;
+
+//number
+//never
+//boolean
+
+//결과
+//number | boolean
+
+//**
+// 반대의 결과 만들어보기
+//  */
+
+type Extract<T, U> = T extends U ? T : never;
+type B = Extract<number | string | boolean, string>;
+
+//최종결과
+//string

@@ -1,29 +1,35 @@
 //any
 //특정 변수의 타입을 우리가 확실히 모를때
+//unknown 형식은 any type 과 다르게 넣을수 없습니다.
 
-let anyVar : any =10;
-anyVar ="어떤타입이던지 넣을수 있음";
+//unknown 타입은 변수에 저장할 수 없기때문에 any 타입보단 오류를 방지할수 있다.
 
-let num : number =10;
+let anyVar3 = 10;
+//anyVar3 = "hello"; // string 형식을 넣을 경우 오류 남 .
+
+let anyVar: any = 10;
+anyVar = "어떤타입이던지 넣을수 있음";
+
+let num: number = 10;
 num = anyVar; //자유롭게 넣을수 있음
 
 //값이 뭐던 함수를 사용할수 있다.(실제는 오류 발생함)
 anyVar.toUpperCase();
-anyVar.toFixed(); 
+anyVar.toFixed();
 
-
-//unknown 
+//unknown
 //any 비슷하지만 넣을 수 없게 있다.
 //unknown 형식은 any type 과 다르게 변수에 넣을수 없습니다.
 
-let unknownVar : unknown;
-unknownVar ="";
+let unknownVar: unknown;
+unknownVar = "";
 unknownVar = 1;
-unknownVar = ()=>{};
+unknownVar = () => {};
 unknownVar = null;
 
 //unknownVar.toUpperCase(); any와 다르게 사용불가
 //num = unknownVar; //unknown 형식은 any type 과 다르게 넣을수 없습니다.
-if(typeof unknownVar === "number"){ //타입체크를 하고는 넣을 수있다.
-    num = unknownVar ; 
+if (typeof unknownVar === "number") {
+  //타입체크를 하고는 넣을 수있다.
+  num = unknownVar;
 }

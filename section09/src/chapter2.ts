@@ -1,33 +1,16 @@
 /**
- * 분산적인 조건부 타입
+ * infer (추론하는 )
+ *  inference --> 추론하다
  */
 
-type StringNumberSwitch<T> = T extends number ? string : number;
+type FuncA = () => string;
+type FuncB = () => number;
 
-let a: StringNumberSwitch<number>;
-let b: StringNumberSwitch<string>;
+//type ReturnType<T> = T extends () => string ? string : never;
 
-let c: StringNumberSwitch<number | string>;
-//각각 한번씩 분리가 되어 union 된다.
-//StringNumberSwitch<number> |  --> string
-//StringNumberSwitch<string>  --> number;
-//결과 : string | number
+type ReturnType<T> = T extends () => infer R ? R : never; // R이 참이되게 만든다...
 
-let d: StringNumberSwitch<boolean | number | string>;
+type A = ReturnType<FuncA>;
+type B = ReturnType<FuncB>;
 
-//분리되어
-//number | string | number
-//결과 : number |string
-
-/** 실용적인 예제 조건부 타입 */
-
-type Exclude<T, U> = T extends U ? never : T;
-
-type A = Exclude<number | string | boolean, string>;
-
-//number
-//never
-//boolean
-
-//결과
-//number | boolean
+type C = ReturnType<number>; // 추론 할수 없다,
